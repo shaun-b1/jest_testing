@@ -7,6 +7,7 @@ module.exports = {
   context: path.resolve(__dirname, "src"),
   entry: {
     capitalise: "./capitalise.js",
+    reverser: "./reverser.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
