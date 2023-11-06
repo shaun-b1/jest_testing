@@ -1,19 +1,19 @@
 /* eslint-disable no-undef */
 import { calculator } from "./calculator";
 
-test("function should add two numbers together", () => {
+test("Function should add two numbers together", () => {
   expect(calculator.add(1, 1)).toEqual(2);
 });
 
-test("function should add two numbers, one of which is negative", () => {
+test("Function should add two numbers, one of which is negative", () => {
   expect(calculator.add(-1, 2)).toEqual(1);
 });
 
-test("function should add two numbers, one of which is 0", () => {
+test("Function should add two numbers, one of which is 0", () => {
   expect(calculator.add(1, 0)).toEqual(1);
 });
 
-test("function should add two numbers that are floating point numbers", () => {
+test("Function should add two numbers that are floating point numbers", () => {
   expect(calculator.add(0.5, 0.5)).toBeCloseTo(1);
 });
 
