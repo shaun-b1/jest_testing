@@ -1,23 +1,39 @@
 function caesarCipher(string, shiftFactor) {
-  if (
-    string.charCodeAt(0).between(96, 123) &&
-    string.charCodeAt(0) + shiftFactor > 122
-  ) {
-    const shiftedValue = shiftFactor - 26;
-    return shift(string, shiftedValue);
-  } else {
-    return shift(string, shiftFactor);
+  return string
+    .split("")
+    .map((char) => characterShifter(char, shiftFactor))
+    .join("");
+}
+
+function isUpperCase(charCode) {
+  return charCode >= 65 && charCode <= 90;
+}
+
+function isLowerCase(charCode) {
+  return charCode >= 97 && charCode <= 122;
+}
+
+function characterShifter(char, shiftFactor) {
+  const charCode = char.charCodeAt(0);
+
+  if (isUpperCase(charCode) || isLowerCase(charCode)) {
+    const shiftAmount = shiftFactor % 26;
+    let shiftedCharCode = charCode + shiftAmount;
+
+    if (
+      (isUpperCase(charCode) && shiftedCharCode > 90) ||
+      (isLowerCase(charCode) && shiftedCharCode > 122)
+    ) {
+      shiftedCharCode -= 26;
+    } else if (
+      (isUpperCase(charCode) && shiftedCharCode < 65) ||
+      (isLowerCase(charCode) && shiftedCharCode < 97)
+    ) {
+      shiftedCharCode += 26;
+    }
+    return String.fromCharCode(shiftedCharCode);
   }
+  return char;
 }
-
-function shift(string, shiftFactor) {
-  return String.fromCharCode(string.charCodeAt(0) + shiftFactor);
-}
-
-Number.prototype.between = function (a, b) {
-  const min = Math.min.apply(Math, [a, b]);
-  const max = Math.max.apply(Math, [a, b]);
-  return this > min && this < max;
-};
 
 export { caesarCipher };
